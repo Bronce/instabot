@@ -199,7 +199,7 @@ def check_user(self, user_id, unfollowing=False):  # noqa: C901
         self.console_print(msg, "red")
         skipped.append(user_id)
         return False
-    if follower_count > self.max_followers_to_follow:
+    if follower_count > self.max_followers_to_follow and (self.max_followers_to_follow > 0):
         msg = "follower_count > bot.max_followers_to_follow, skipping!"
         self.console_print(msg, "red")
         skipped.append(user_id)
@@ -209,7 +209,7 @@ def check_user(self, user_id, unfollowing=False):  # noqa: C901
         self.console_print(msg, "red")
         skipped.append(user_id)
         return False
-    if user_info["following_count"] > self.max_following_to_follow:
+    if user_info["following_count"] > self.max_following_to_follow and (self.max_following_to_follow > 0):
         msg = "following_count > bot.max_following_to_follow, skipping!"
         self.console_print(msg, "red")
         skipped.append(user_id)
@@ -279,7 +279,7 @@ def check_not_bot(self, user_id):
     skipped = self.skipped_file
     if (
         "following_count" in user_info
-        and user_info["following_count"] > self.max_following_to_block
+        and user_info["following_count"] > self.max_following_to_block and (self.max_following_to_block > 0)
     ):
         msg = "following_count > bot.max_following_to_block, skipping!"
         self.console_print(msg, "red")
