@@ -217,7 +217,7 @@ def check_user(self, user_id, unfollowing=False):  # noqa: C901
     try:
         if (
             (following_count > 0)
-            and follower_count / following_count > self.max_followers_to_following_ratio
+            and follower_count / following_count > self.max_followers_to_following_ratio and (self.max_followers_to_following_ratio > 0)
         ):
             msg = (
                 "follower_count / following_count > "
@@ -228,7 +228,7 @@ def check_user(self, user_id, unfollowing=False):  # noqa: C901
             return False
         if (
             (follower_count > 0)
-            and following_count / follower_count > self.max_following_to_followers_ratio
+            and following_count / follower_count > self.max_following_to_followers_ratio and (self.max_following_to_followers_ratio > 0)
         ):
             msg = (
                 "following_count / follower_count > "
